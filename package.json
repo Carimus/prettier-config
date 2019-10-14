@@ -1,6 +1,6 @@
 {
     "name": "@carimus/prettier-config",
-    "version": "1.0.0",
+    "version": "0.0.0-development",
     "description": "A base prettier config for Carimus projects",
     "main": "index.json",
     "scripts": {
