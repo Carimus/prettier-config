@@ -1,0 +1,68 @@
+{
+    "name": "@carimus/prettier-config",
+    "version": "1.0.0",
+    "description": "A base prettier config for Carimus projects",
+    "main": "index.json",
+    "scripts": {
+        "test": "echo 'No tests defined'",
+        "pretty": "prettier --write '{*,.github/**/*}.{json,md,yml,html}'",
+        "semantic-release": "semantic-release",
+        "release": "yarn run semantic-release",
+        "release-ci": "echo 'unsafe-perm = true' > ./.npmrc && yarn run semantic-release && rm -rf ./.npmrc",
+        "commit": "git-cz"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Carimus/prettier-config.git"
+    },
+    "keywords": [
+        "prettier",
+        "prettierconfig"
+    ],
+    "author": "Carimus <connect@carimus.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Carimus/prettier-config/issues"
+    },
+    "homepage": "https://github.com/Carimus/prettier-config#readme",
+    "files": [
+        "index.json",
+        "package.json",
+        "yarn.lock"
+    ],
+    "peerDependencies": {
+        "prettier": ">=1"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^8.2.0",
+        "@commitlint/config-conventional": "^8.2.0",
+        "commitizen": "^4.0.3",
+        "cz-conventional-changelog": "^3.0.2",
+        "husky": "^3.0.9",
+        "lint-staged": "^9.4.2",
+        "prettier": ">=1",
+        "semantic-release": "^15.13.24"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "{*,.github/**/*}.{json,md,yml,html}": [
+            "prettier --write",
+            "git add"
+        ]
+    }
+}
